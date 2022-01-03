@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 public class InvalidRetryMaxRetriesTest extends Arquillian {
 
     @Deployment
-    @ShouldThrowException(value = FaultToleranceDefinitionException.class)
+    @ShouldThrowException()
     public static WebArchive deploy() {
         JavaArchive testJar = ShrinkWrap
                 .create(JavaArchive.class, "ftInvalidRetry2.jar")
@@ -47,7 +47,7 @@ public class InvalidRetryMaxRetriesTest extends Arquillian {
 
     /**
      * Test that the deployment of an invalid @Retry parameter leads to a DeploymentException.
-     * 
+     *
      * A Service is annotated with a @Retry annotation with a negative maxRetries.
      */
     @Test

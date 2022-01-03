@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 public class InvalidTimeoutValueTest extends Arquillian {
 
     @Deployment
-    @ShouldThrowException(value = FaultToleranceDefinitionException.class)
+    @ShouldThrowException()
     public static WebArchive deploy() {
         JavaArchive testJar = ShrinkWrap
                 .create(JavaArchive.class, "ftInvalidTimeout.jar")
@@ -47,7 +47,7 @@ public class InvalidTimeoutValueTest extends Arquillian {
 
     /**
      * Test that the deployment of an invalid @Timeout parameter leads to a DeploymentException.
-     * 
+     *
      * A Service is annotated with a @Timeout annotation with a negative value.
      */
     @Test

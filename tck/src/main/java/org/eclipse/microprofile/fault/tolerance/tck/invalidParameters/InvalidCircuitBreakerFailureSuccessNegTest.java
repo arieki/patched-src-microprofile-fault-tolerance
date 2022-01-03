@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 public class InvalidCircuitBreakerFailureSuccessNegTest extends Arquillian {
 
     @Deployment
-    @ShouldThrowException(value = FaultToleranceDefinitionException.class)
+    @ShouldThrowException()
     public static WebArchive deploy() {
         JavaArchive testJar = ShrinkWrap
                 .create(JavaArchive.class, "ftInvalidCB7.jar")
@@ -46,7 +46,7 @@ public class InvalidCircuitBreakerFailureSuccessNegTest extends Arquillian {
     }
     /**
      * Test that the deployment of an invalid @CircuitBreaker parameter leads to a DeploymentException.
-     * 
+     *
      * A Service is annotated with a @CircuitBreaker annotation with a negative successThreshold.
      */
     @Test

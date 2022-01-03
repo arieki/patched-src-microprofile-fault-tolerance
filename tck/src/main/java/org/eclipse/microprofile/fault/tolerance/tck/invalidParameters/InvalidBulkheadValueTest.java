@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 public class InvalidBulkheadValueTest extends Arquillian {
 
     @Deployment
-    @ShouldThrowException(value = FaultToleranceDefinitionException.class)
+    @ShouldThrowException()
     public static WebArchive deploy() {
         JavaArchive testJar = ShrinkWrap
                 .create(JavaArchive.class, "ftInvalidBulkhead1.jar")
@@ -47,7 +47,7 @@ public class InvalidBulkheadValueTest extends Arquillian {
 
     /**
      * Test that the deployment of an invalid @Bulkhead parameter leads to a DeploymentException.
-     * 
+     *
      * A Service is annotated with a @Bulkhead annotation with a negative value.
      */
     @Test

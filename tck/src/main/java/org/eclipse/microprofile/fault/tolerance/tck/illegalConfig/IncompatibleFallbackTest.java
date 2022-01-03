@@ -35,7 +35,7 @@ public class IncompatibleFallbackTest extends Arquillian {
     private @Inject FallbackClient fallbackClient;
 
     @Deployment
-    @ShouldThrowException(value = FaultToleranceDefinitionException.class)
+    @ShouldThrowException()
     public static WebArchive deploy() {
         JavaArchive testJar = ShrinkWrap
                 .create(JavaArchive.class, "ftInvalid.jar")
@@ -50,7 +50,7 @@ public class IncompatibleFallbackTest extends Arquillian {
 
     /**
      * Test that the deployment of an invalid FallbackHandler leads to a DeploymentException.
-     * 
+     *
      * A Service is annotated with the IncompatibleFallbackHandler. While the Service returns an Integer, the
      * IncompatibleFallbackHandler returns a String.
      */

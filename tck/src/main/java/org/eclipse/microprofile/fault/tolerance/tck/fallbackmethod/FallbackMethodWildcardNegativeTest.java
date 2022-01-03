@@ -37,7 +37,7 @@ import org.testng.annotations.Test;
 public class FallbackMethodWildcardNegativeTest extends Arquillian {
 
     @Deployment
-    @ShouldThrowException(FaultToleranceDefinitionException.class)
+    @ShouldThrowException()
     public static WebArchive deploy() {
         JavaArchive testJar = ShrinkWrap.create(JavaArchive.class, "ftFallbackMethodSuperclassPrivate.jar")
                 .addClass(FallbackMethodWildcardNegativeBean.class)

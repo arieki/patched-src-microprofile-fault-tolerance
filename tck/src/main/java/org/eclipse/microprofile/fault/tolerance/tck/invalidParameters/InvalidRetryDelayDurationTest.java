@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 public class InvalidRetryDelayDurationTest extends Arquillian {
 
     @Deployment
-    @ShouldThrowException(value = FaultToleranceDefinitionException.class)
+    @ShouldThrowException()
     public static WebArchive deploy2() {
         JavaArchive testJar = ShrinkWrap
                 .create(JavaArchive.class, "ftInvalidRetry3.jar")
@@ -47,7 +47,7 @@ public class InvalidRetryDelayDurationTest extends Arquillian {
 
     /**
      * Test that the deployment of an invalid @Retry parameter leads to a DeploymentException.
-     * 
+     *
      * A Service is annotated with a @Retry annotation with a maxDuration that is less than the delay.
      */
     @Test
