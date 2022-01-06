@@ -20,15 +20,16 @@
         <!-- This is just for now and will not work if the API has a separate release cycle than the rest. -->
         <groupId>org.eclipse.microprofile.fault-tolerance</groupId>
         <artifactId>microprofile-fault-tolerance-parent</artifactId>
-        <version>4.0.1.payara-p1</version>
+        <version>4.0.payara-p1</version>
     </parent>
 
     <properties>
         <bnd.version>5.0.0</bnd.version>
+        <bnd.baseline.continue.on.error>true</bnd.baseline.continue.on.error>
     </properties>
     <groupId>org.eclipse.microprofile.fault-tolerance</groupId>
     <artifactId>microprofile-fault-tolerance-api</artifactId>
-    <version>4.0.1.payara-p1</version>
+    <version>4.0.payara-p1</version>
     <name>microProfile-fault-tolerance-api</name>
     <description>Fault Tolerance APIs for MicroProfile :: API</description>
     <dependencies>
@@ -44,5 +45,4 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
 </project>
