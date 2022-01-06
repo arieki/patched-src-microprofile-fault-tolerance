@@ -22,6 +22,7 @@ package org.eclipse.microprofile.fault.tolerance.tck.fallbackmethod;
 
 import org.eclipse.microprofile.fault.tolerance.tck.fallbackmethod.beans.FallbackMethodSubclassBeanA;
 import org.eclipse.microprofile.fault.tolerance.tck.fallbackmethod.beans.FallbackMethodSubclassBeanB;
+import org.eclipse.microprofile.faulttolerance.exceptions.FaultToleranceDefinitionException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.ShouldThrowException;
 import org.jboss.arquillian.testng.Arquillian;
@@ -37,7 +38,7 @@ import org.testng.annotations.Test;
 public class FallbackMethodSubclassTest extends Arquillian {
 
     @Deployment
-    @ShouldThrowException()
+    @ShouldThrowException(value = FaultToleranceDefinitionException.class)
     public static WebArchive deploy() {
         JavaArchive testJar = ShrinkWrap.create(JavaArchive.class, "ftFallbackMethodSubclass.jar")
                 .addClasses(FallbackMethodSubclassBeanA.class, FallbackMethodSubclassBeanB.class)

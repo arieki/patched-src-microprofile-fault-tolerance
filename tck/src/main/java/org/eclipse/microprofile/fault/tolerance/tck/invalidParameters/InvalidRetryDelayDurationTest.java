@@ -19,6 +19,7 @@
  *******************************************************************************/
 package org.eclipse.microprofile.fault.tolerance.tck.invalidParameters;
 
+import org.eclipse.microprofile.faulttolerance.exceptions.FaultToleranceDefinitionException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.ShouldThrowException;
 import org.jboss.arquillian.testng.Arquillian;
@@ -31,7 +32,7 @@ import org.testng.annotations.Test;
 public class InvalidRetryDelayDurationTest extends Arquillian {
 
     @Deployment
-    @ShouldThrowException()
+    @ShouldThrowException(value = FaultToleranceDefinitionException.class)
     public static WebArchive deploy2() {
         JavaArchive testJar = ShrinkWrap
                 .create(JavaArchive.class, "ftInvalidRetry3.jar")
