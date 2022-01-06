@@ -38,7 +38,7 @@ import org.testng.annotations.Test;
 public class FallbackMethodOutOfPackageTest extends Arquillian {
 
     @Deployment
-    @ShouldThrowException(FaultToleranceDefinitionException.class)
+    @ShouldThrowException(value = FaultToleranceDefinitionException.class)
     public static WebArchive deploy() {
         JavaArchive testJar = ShrinkWrap.create(JavaArchive.class, "ftFallbackMethodOutOfPackage.jar")
                 .addClasses(FallbackMethodOutOfPackageBeanA.class, FallbackMethodOutOfPackageBeanB.class)

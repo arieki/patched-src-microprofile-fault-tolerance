@@ -38,7 +38,7 @@ import org.testng.annotations.Test;
 public class FallbackMethodSubclassTest extends Arquillian {
 
     @Deployment
-    @ShouldThrowException(FaultToleranceDefinitionException.class)
+    @ShouldThrowException(value = FaultToleranceDefinitionException.class)
     public static WebArchive deploy() {
         JavaArchive testJar = ShrinkWrap.create(JavaArchive.class, "ftFallbackMethodSubclass.jar")
                 .addClasses(FallbackMethodSubclassBeanA.class, FallbackMethodSubclassBeanB.class)
