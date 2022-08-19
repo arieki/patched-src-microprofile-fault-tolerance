@@ -32,7 +32,6 @@ import org.eclipse.microprofile.fault.tolerance.tck.retry.exception.hierarchy.Re
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -53,7 +52,7 @@ public class RetryExceptionHierarchyTest extends Arquillian {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "ftRetryExceptionHierarchy.jar")
                 .addClasses(E0.class, E0S.class, E1.class, E1S.class, E2.class, E2S.class, RetryStatus.class,
                         RetryService.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         return ShrinkWrap

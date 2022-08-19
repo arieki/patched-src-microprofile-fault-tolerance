@@ -39,7 +39,6 @@ import org.eclipse.microprofile.fault.tolerance.tck.util.Connection;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
@@ -68,7 +67,7 @@ public class AsynchronousTest extends Arquillian {
                 .create(JavaArchive.class, "ftAsynchronous.jar")
                 .addClasses(AsyncClient.class, AsyncClassLevelClient.class, AsyncApplicationScopeClient.class,
                         AsyncRequestScopeClient.class, Connection.class, CompletableFutureHelper.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         return ShrinkWrap.create(WebArchive.class, "ftAsynchronous.war").addAsLibrary(testJar);
@@ -124,10 +123,10 @@ public class AsynchronousTest extends Arquillian {
     /**
      * Test that the request context is active during execution for an asynchronous method that returns a
      * CompletionStage
-     * 
+     *
      * If the request scope is active, then an @ApplicationScoped bean should be able to asynchronously call
      * an @Asynchronous method returning a CompletionStage on a @RequestScoped bean, and return the correct result
-     * 
+     *
      * @throws TimeoutException
      * @throws ExecutionException
      * @throws InterruptedException
@@ -142,10 +141,10 @@ public class AsynchronousTest extends Arquillian {
 
     /**
      * Test that the request context is active during execution for an asynchronous method that returns a Future
-     * 
+     *
      * If the request scope is active, then an @ApplicationScoped bean should be able to asynchronously call
      * an @Asynchronous method returning a Future on a @RequestScoped bean, and return the correct result
-     * 
+     *
      * @throws TimeoutException
      * @throws ExecutionException
      * @throws InterruptedException

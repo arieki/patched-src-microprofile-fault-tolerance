@@ -54,7 +54,6 @@ import org.eclipse.microprofile.faulttolerance.exceptions.BulkheadException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -105,7 +104,7 @@ public class BulkheadAsynchTest extends Arquillian {
                 .addPackage(BulkheadClassAsynchronousDefaultBean.class.getPackage())
                 .addClass(CompletableFutureHelper.class)
                 .addPackage(Packages.UTILS)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
         return ShrinkWrap.create(WebArchive.class, "ftBulkheadAsynchTest.war").addAsLibrary(testJar);
     }
@@ -229,7 +228,7 @@ public class BulkheadAsynchTest extends Arquillian {
      * <p>
      * The {@code bulkheadMethod} should be a reference to a method annotated with {@link Bulkhead} and
      * {@link Asynchronous} which accepts a {@code Barrier} and calls {@link Barrier#await()}.
-     * 
+     *
      * @param maxRunning
      *            expected number of tasks permitted to run
      * @param maxQueued

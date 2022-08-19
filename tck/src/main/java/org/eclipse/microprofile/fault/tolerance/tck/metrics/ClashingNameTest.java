@@ -30,7 +30,6 @@ import org.eclipse.microprofile.fault.tolerance.tck.metrics.util.MetricGetter;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
 
@@ -43,7 +42,7 @@ public class ClashingNameTest extends Arquillian {
         WebArchive war = ShrinkWrap.create(WebArchive.class, "ftMetricClash.war")
                 .addClasses(ClashingNameBean.class)
                 .addPackage(MetricGetter.class.getPackage())
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsWebInfResource("beans.xml", "beans.xml");
 
         return war;
     }

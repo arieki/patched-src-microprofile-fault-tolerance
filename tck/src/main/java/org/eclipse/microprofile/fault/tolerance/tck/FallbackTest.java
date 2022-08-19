@@ -31,7 +31,6 @@ import org.eclipse.microprofile.faulttolerance.exceptions.TimeoutException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
@@ -41,7 +40,7 @@ import jakarta.inject.Inject;
 
 /**
  * Test fallback was invoked correctly; fallback handler supporting CDI injection; type safety on fallback class.
- * 
+ *
  * @author <a href="mailto:neil_young@uk.ibm.com">Neil Young</a>
  *
  */
@@ -60,7 +59,7 @@ public class FallbackTest extends Arquillian {
                         SecondStringFallbackHandler.class,
                         StringFallbackHandlerWithBean.class, MyBean.class,
                         FallbackOnlyClient.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         WebArchive war = ShrinkWrap.create(WebArchive.class, "ftFallback.war")
@@ -70,7 +69,7 @@ public class FallbackTest extends Arquillian {
 
     /**
      * Test that a Fallback service is driven after the specified number of retries are executed.
-     * 
+     *
      * Each of serviceA and serviceB specify the same FallbackHandler. The test checks that the handler has been driven
      * in the correct ExecutionContext and that the Service has been executed the correct number of times.
      */
@@ -99,7 +98,7 @@ public class FallbackTest extends Arquillian {
 
     /**
      * A refinement on testFallbackSuccess to test that a bean may be injected in the FallbackHandler.
-     * 
+     *
      * Each of serviceA and serviceB specify the same FallbackHandler. The test checks that the handler has been driven
      * in the correct ExecutionContext and that the Service has been executed the correct number of times.
      */
@@ -165,7 +164,7 @@ public class FallbackTest extends Arquillian {
 
     /**
      * Test that a Fallback service is driven after the specified number of retries are executed.
-     * 
+     *
      * A timeout is configured for serviceC but the service should fail before the timeout is reached and generate a
      * RuntimeException. After a retry the Fallback will be executed.
      */
@@ -189,7 +188,7 @@ public class FallbackTest extends Arquillian {
 
     /**
      * Test that a Fallback service is driven after the specified number of retries are executed.
-     * 
+     *
      * A timeout is configured for serviceC and in this case the service should generate Timeout exceptions. After a
      * retry the Fallback will be executed.
      */
@@ -213,7 +212,7 @@ public class FallbackTest extends Arquillian {
 
     /**
      * Test that a method in a Fallback service is driven after the specified number of retries are executed.
-     * 
+     *
      * ServiceD specifies a method on a FallbackHandler. The test checks that the FallbackHandler method has been driven
      * and that the Service has been executed the correct number of times.
      */
@@ -234,7 +233,7 @@ public class FallbackTest extends Arquillian {
 
     /**
      * Analogous to testFallbackMethodSuccess but serviceE has a pair of parameters.
-     * 
+     *
      * ServiceE specifies a method on a FallbackHandler. The test checks that the FallbackHandler method has been driven
      * and that the Service has been executed the correct number of times.
      */

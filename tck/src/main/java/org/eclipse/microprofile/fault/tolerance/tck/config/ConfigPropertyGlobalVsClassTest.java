@@ -22,7 +22,6 @@ package org.eclipse.microprofile.fault.tolerance.tck.config;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -45,7 +44,7 @@ public class ConfigPropertyGlobalVsClassTest extends Arquillian {
                         "org.eclipse.microprofile.fault.tolerance.tck.config.BeanWithRetry/Retry/maxRetries=5" +
                                 "\nRetry/maxRetries=7"),
                         "microprofile-config.properties")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         WebArchive war = ShrinkWrap

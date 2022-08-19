@@ -39,7 +39,6 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.Asset;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
@@ -49,7 +48,7 @@ import jakarta.inject.Inject;
 
 /**
  * Test the combination of the @Asynchronous and @Timeout annotations.
- * 
+ *
  * @author <a href="mailto:neil_young@uk.ibm.com">Neil Young</a>
  *
  */
@@ -80,7 +79,7 @@ public class AsyncTimeoutTest extends Arquillian {
                 .create(JavaArchive.class, "ftAsyncTimeout.jar")
                 .addClasses(AsyncTimeoutClient.class, AsyncClassLevelTimeoutClient.class, Connection.class)
                 .addAsManifestResource(config, "microprofile-config.properties")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         WebArchive war = ShrinkWrap
@@ -92,7 +91,7 @@ public class AsyncTimeoutTest extends Arquillian {
     /**
      * Test that an Asynchronous Service times out as expected where the service is annotated with both
      * the @Asynchronous and @Timeout annotations.
-     * 
+     *
      * A timeout is configured for serviceA but serviceA has a 5 second sleep so that, in this case, the service should
      * generate Timeout exceptions.
      */
@@ -151,7 +150,7 @@ public class AsyncTimeoutTest extends Arquillian {
     /**
      * Test that an Asynchronous Service does not throw a TimeoutException where the service completes more quickly than
      * the specified time out. The service is annotated with both @Asynchronous and @Timeout.
-     * 
+     *
      * A 2 second timeout is configured for serviceB but serviceB has a 0.5 second sleep so that, in this case, the
      * service should NOT generate Timeout exceptions.
      */
@@ -189,7 +188,7 @@ public class AsyncTimeoutTest extends Arquillian {
 
     /**
      * Analogous to testAsyncTimeout but using Class level rather than method level annotations.
-     * 
+     *
      * A timeout is configured for serviceA but serviceA has a 5 second sleep so that, in this case, the service should
      * generate Timeout exceptions.
      */

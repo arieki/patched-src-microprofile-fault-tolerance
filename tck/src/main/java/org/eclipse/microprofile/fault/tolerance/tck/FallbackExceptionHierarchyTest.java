@@ -32,7 +32,6 @@ import org.eclipse.microprofile.fault.tolerance.tck.fallback.exception.hierarchy
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.AfterMethod;
@@ -52,7 +51,7 @@ public class FallbackExceptionHierarchyTest extends Arquillian {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "ftFallbackExceptionHierarchy.jar")
                 .addPackage(E0.class.getPackage())
                 .addClass(FallbackService.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         return ShrinkWrap

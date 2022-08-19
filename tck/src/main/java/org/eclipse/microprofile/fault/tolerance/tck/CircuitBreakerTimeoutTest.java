@@ -26,7 +26,6 @@ import org.eclipse.microprofile.fault.tolerance.tck.util.Packages;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -35,7 +34,7 @@ import jakarta.inject.Inject;
 
 /**
  * Test the combination of {@code @CircuitBreaker} and {@code @Timeout}
- * 
+ *
  * @author <a href="mailto:anrouse@uk.ibm.com">Andrew Rouse</a>
  */
 public class CircuitBreakerTimeoutTest extends Arquillian {
@@ -49,7 +48,7 @@ public class CircuitBreakerTimeoutTest extends Arquillian {
         JavaArchive testJar = ShrinkWrap.create(JavaArchive.class, "ftCircuitBreakerTimeout.jar")
                 .addClasses(CircuitBreakerClientWithTimeout.class)
                 .addPackage(Packages.UTILS)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .addAsManifestResource(config, "microprofile-config.properties");
 
         WebArchive war = ShrinkWrap.create(WebArchive.class, "ftCircuitBreakerTimeout.war")

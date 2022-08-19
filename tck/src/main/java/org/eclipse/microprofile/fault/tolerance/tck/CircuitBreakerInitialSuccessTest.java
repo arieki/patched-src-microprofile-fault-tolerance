@@ -26,7 +26,6 @@ import org.eclipse.microprofile.faulttolerance.exceptions.CircuitBreakerOpenExce
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
@@ -36,7 +35,7 @@ import jakarta.inject.Inject;
 
 /**
  * Test CircuitBreaker using different success/failure pattern.
- * 
+ *
  * @author <a href="mailto:neil_young@uk.ibm.com">Neil Young</a>
  *
  */
@@ -50,7 +49,7 @@ public class CircuitBreakerInitialSuccessTest extends Arquillian {
         JavaArchive testJar = ShrinkWrap.create(JavaArchive.class, "ftCircuitBreakerInitialSuccess.jar")
                 .addClasses(CircuitBreakerClientDefaultSuccessThreshold.class,
                         Misc.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         return ShrinkWrap.create(WebArchive.class, "ftCircuitBreakerInitialSuccess.war")
@@ -60,7 +59,7 @@ public class CircuitBreakerInitialSuccessTest extends Arquillian {
     /**
      * Analagous to testCircuitDefaultSuccessThreshold but with a different success/failure pattern for the service that
      * is called. In this case, the service initially succeeds.
-     * 
+     *
      * With requestVolumeThreshold = 4, failureRatio=0.75 and successThreshold = 1 the expected behaviour is,
      *
      * Execution Behaviour ========= ========= 1 SUCCESS 2 RunTimeException 3 RunTimeException 4 RunTimeException 5

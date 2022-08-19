@@ -41,7 +41,6 @@ import org.eclipse.microprofile.fault.tolerance.tck.util.Packages;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -61,7 +60,7 @@ public class MetricsDisabledTest extends Arquillian {
                 .addPackage(Packages.METRIC_UTILS)
                 .addAsResource(new StringAsset("MP_Fault_Tolerance_Metrics_Enabled=false"),
                         "META-INF/microprofile-config.properties")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsWebInfResource("beans.xml", "beans.xml");
 
         return war;
     }

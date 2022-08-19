@@ -46,7 +46,6 @@ import org.eclipse.microprofile.faulttolerance.exceptions.BulkheadException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -110,7 +109,7 @@ public class BulkheadAsynchRetryTest extends Arquillian {
                 .addClass(BulkheadAsynchTest.class)
                 .addPackage(Bulkhead33RetryManyAsyncClassBean.class.getPackage())
                 .addPackage(Packages.UTILS)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .addAsManifestResource(config, "microprofile-config.properties");
 
         return ShrinkWrap.create(WebArchive.class, "ftBulkheadAsynchRetryTest.war")
@@ -160,7 +159,7 @@ public class BulkheadAsynchRetryTest extends Arquillian {
      * <p>
      * This test fills the bulkhead and the queue, tries to run an additional task, empties the bulkhead and the queue
      * and checks that the additional task runs.
-     * 
+     *
      * @param maxRunning
      *            bulkhead size
      * @param maxQueued
@@ -303,7 +302,7 @@ public class BulkheadAsynchRetryTest extends Arquillian {
 
     /**
      * Test that retries do not occur when BulkheadException is included in the abortOn attribute
-     * 
+     *
      * @throws InterruptedException
      *             if the test is interrupted
      */

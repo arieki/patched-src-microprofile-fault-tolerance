@@ -31,7 +31,6 @@ import org.eclipse.microprofile.faulttolerance.exceptions.TimeoutException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
@@ -41,7 +40,7 @@ import jakarta.inject.Inject;
 
 /**
  * Test the combination of the @Retry and @Timeout annotations.
- * 
+ *
  * @author <a href="mailto:emijiang@uk.ibm.com">Emily Jiang</a>
  * @author <a href="mailto:anrouse@uk.ibm.com">Andrew Rouse</a>
  *
@@ -66,7 +65,7 @@ public class RetryTimeoutTest extends Arquillian {
                 .create(JavaArchive.class, "ftRetryTimeout.jar")
                 .addClasses(RetryTimeoutClient.class)
                 .addAsManifestResource(config, "microprofile-config.properties")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         WebArchive war = ShrinkWrap
@@ -77,9 +76,9 @@ public class RetryTimeoutTest extends Arquillian {
 
     /**
      * Test that a Service is retried the expected number of times.
-     * 
+     *
      * A timeout is configured for serviceA and in this case the service should generate Timeout exceptions.
-     * 
+     *
      * The service should be retried.
      */
     @Test
@@ -99,10 +98,10 @@ public class RetryTimeoutTest extends Arquillian {
 
     /**
      * Test that a Service is retried the expected number of times.
-     * 
+     *
      * A timeout is configured for serviceA but the service should fail before the timeout is reached and generate a
      * RuntimeException.
-     * 
+     *
      * The service should be retried.
      */
     @Test

@@ -44,7 +44,6 @@ import org.hamcrest.MatcherAssert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
@@ -83,7 +82,7 @@ public class CircuitBreakerRetryTest extends Arquillian {
                         CircuitBreakerClassLevelClientWithRetry.class,
                         CircuitBreakerClientWithRetryAsync.class)
                 .addPackage(Packages.UTILS)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .addAsManifestResource(config, "microprofile-config.properties")
                 .as(JavaArchive.class);
 

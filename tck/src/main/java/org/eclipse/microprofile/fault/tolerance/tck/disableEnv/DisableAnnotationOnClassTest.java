@@ -37,7 +37,6 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.Asset;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
@@ -75,7 +74,7 @@ public class DisableAnnotationOnClassTest extends Arquillian {
                 .addClasses(DisableAnnotationClient.class)
                 .addPackage(Packages.UTILS)
                 .addAsManifestResource(config, "microprofile-config.properties")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         WebArchive war = ShrinkWrap
