@@ -42,7 +42,6 @@ import org.eclipse.microprofile.faulttolerance.exceptions.BulkheadException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -101,7 +100,7 @@ public class BulkheadSynchRetryTest extends Arquillian {
         JavaArchive testJar = ShrinkWrap.create(JavaArchive.class, "ftBulkheadSynchRetryTest.jar")
                 .addPackage(Bulkhead1RetryManySyncMethodBean.class.getPackage())
                 .addPackage(Packages.UTILS)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .addAsManifestResource(config, "microprofile-config.properties");
 
         return ShrinkWrap.create(WebArchive.class, "ftBulkheadSynchRetryTest.war").addAsLibrary(testJar);
@@ -165,7 +164,7 @@ public class BulkheadSynchRetryTest extends Arquillian {
      * </ul>
      * <p>
      * This second point is particularly important if Retry is used with a long delay.
-     * 
+     *
      * @throws InterruptedException
      *             if the test is interrupted
      */
@@ -209,7 +208,7 @@ public class BulkheadSynchRetryTest extends Arquillian {
      * </ul>
      * <p>
      * This second point is particularly important if Retry is used with a long delay.
-     * 
+     *
      * @throws InterruptedException
      *             if the test is interrupted
      */
@@ -271,7 +270,7 @@ public class BulkheadSynchRetryTest extends Arquillian {
      * Tests that a Bulkhead + Retry configuration does not retry on BulkheadException
      * <p>
      * The test method should be configured with {@code Bulkhead(1)} and a 1 second delay on Retry.
-     * 
+     *
      * @param testMethod
      *            the test method
      */

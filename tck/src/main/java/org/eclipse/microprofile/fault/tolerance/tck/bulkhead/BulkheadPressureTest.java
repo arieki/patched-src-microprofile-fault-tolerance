@@ -44,7 +44,6 @@ import org.eclipse.microprofile.faulttolerance.exceptions.BulkheadException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -61,7 +60,7 @@ public class BulkheadPressureTest extends Arquillian {
         JavaArchive jar = ShrinkWrap.create(JavaArchive.class, "ftBulkheadPressure.jar")
                 .addPackage(Packages.UTILS)
                 .addClass(BulkheadPressureBean.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsManifestResource("beans.xml", "beans.xml");
 
         WebArchive war = ShrinkWrap.create(WebArchive.class, "ftBulkheadPressure.war")
                 .addAsLibraries(jar);

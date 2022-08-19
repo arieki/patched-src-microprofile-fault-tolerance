@@ -29,7 +29,6 @@ import org.eclipse.microprofile.fault.tolerance.tck.fallbackmethod.beans.Fallbac
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -45,7 +44,7 @@ public class FallbackMethodGenericWildcardTest extends Arquillian {
     public static WebArchive deploy() {
         JavaArchive testJar = ShrinkWrap.create(JavaArchive.class, "ftFallbackMethodGenericWildcard.jar")
                 .addClasses(FallbackMethodGenericWildcardBeanA.class, FallbackMethodGenericWildcardBeanB.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsManifestResource("beans.xml", "beans.xml");
 
         WebArchive war = ShrinkWrap
                 .create(WebArchive.class, "ftFallbackMethodGenericWildcard.war")

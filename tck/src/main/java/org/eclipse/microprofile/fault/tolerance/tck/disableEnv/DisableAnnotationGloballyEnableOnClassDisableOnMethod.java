@@ -40,7 +40,6 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.Asset;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
@@ -97,7 +96,7 @@ public class DisableAnnotationGloballyEnableOnClassDisableOnMethod extends Arqui
                 .addClasses(DisableAnnotationClient.class)
                 .addPackage(Packages.UTILS)
                 .addAsManifestResource(mpAnnotationConfig, "microprofile-config.properties")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         WebArchive war = ShrinkWrap
@@ -118,7 +117,7 @@ public class DisableAnnotationGloballyEnableOnClassDisableOnMethod extends Arqui
 
     /**
      * Test that a Fallback service is ignored when service fails.
-     * 
+     *
      * Retry is enabled at the class level and not disabled for this method so we expect to get two executions
      */
     @Test

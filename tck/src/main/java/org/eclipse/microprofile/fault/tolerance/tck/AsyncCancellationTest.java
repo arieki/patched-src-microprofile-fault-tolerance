@@ -39,7 +39,6 @@ import org.eclipse.microprofile.fault.tolerance.tck.util.TCKConfig;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -67,7 +66,7 @@ public class AsyncCancellationTest extends Arquillian {
                 .create(JavaArchive.class, "ftAsyncCancellation.jar")
                 .addClasses(AsyncCancellationClient.class)
                 .addPackage(Packages.UTILS)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         WebArchive war = ShrinkWrap

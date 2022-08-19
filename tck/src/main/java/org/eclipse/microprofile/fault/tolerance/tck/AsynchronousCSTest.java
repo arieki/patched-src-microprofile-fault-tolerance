@@ -35,7 +35,6 @@ import org.eclipse.microprofile.fault.tolerance.tck.util.Connection;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
@@ -64,7 +63,7 @@ public class AsynchronousCSTest extends Arquillian {
                 .create(JavaArchive.class, "ftAsynchronous.jar")
                 .addClasses(AsyncClient.class, AsyncClassLevelClient.class, Connection.class,
                         CompletableFutureHelper.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         WebArchive war = ShrinkWrap.create(WebArchive.class, "ftAsynchronous.war").addAsLibrary(testJar);
@@ -155,7 +154,7 @@ public class AsynchronousCSTest extends Arquillian {
     /**
      * Test that the callbacks added to the initial stage are executed after the stage returned by the asynchronous
      * method call is completed.
-     * 
+     *
      * The callbacks added inside method invocation must be called first and then callbacks added to the result of the
      * call (on the calling thread) must be executed in the order they were added.
      */

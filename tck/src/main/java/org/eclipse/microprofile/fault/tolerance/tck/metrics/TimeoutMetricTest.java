@@ -42,7 +42,6 @@ import org.eclipse.microprofile.metrics.Snapshot;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -64,7 +63,7 @@ public class TimeoutMetricTest extends Arquillian {
                 .addPackage(Packages.UTILS)
                 .addPackage(Packages.METRIC_UTILS)
                 .addAsManifestResource(config, "microprofile-config.properties")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsManifestResource("beans.xml", "beans.xml");
 
         WebArchive war = ShrinkWrap.create(WebArchive.class, "ftMetricTimeout.war")
                 .addAsLibrary(jar);

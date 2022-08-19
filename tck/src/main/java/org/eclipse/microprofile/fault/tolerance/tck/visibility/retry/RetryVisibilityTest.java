@@ -24,7 +24,6 @@ import java.io.IOException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.Assert;
@@ -34,7 +33,7 @@ import jakarta.inject.Inject;
 
 /**
  * Test for annotations discovering rules in the contexts of class inheritance, method override, etc.
- * 
+ *
  * @author <a href="mailto:matthieu@brouillard.fr">Matthieu Brouillard</a>
  */
 public class RetryVisibilityTest extends Arquillian {
@@ -52,7 +51,7 @@ public class RetryVisibilityTest extends Arquillian {
                 // RetryOnClassServiceNoAnnotationOnOveriddenMethod.class
                 // )
                 .addPackage("org.eclipse.microprofile.fault.tolerance.tck.visibility.retry")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         WebArchive war = ShrinkWrap

@@ -39,7 +39,6 @@ import org.eclipse.microprofile.faulttolerance.exceptions.BulkheadException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -74,7 +73,7 @@ public class BulkheadSynchTest extends Arquillian {
 
     /**
      * This is the Arquillian deploy method that controls the contents of the war that contains all the tests.
-     * 
+     *
      * @return the test war "ftBulkheadSynchTest.war"
      */
     @Deployment
@@ -82,7 +81,7 @@ public class BulkheadSynchTest extends Arquillian {
         JavaArchive testJar = ShrinkWrap.create(JavaArchive.class, "ftBulkheadSynchTest.jar")
                 .addPackage(BulkheadClassSemaphoreDefaultBean.class.getPackage())
                 .addPackage(Packages.UTILS)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
         return ShrinkWrap.create(WebArchive.class, "ftBulkheadSynchTest.war").addAsLibrary(testJar);
     }
@@ -158,7 +157,7 @@ public class BulkheadSynchTest extends Arquillian {
      * <p>
      * The {@code bulkheadMethod} should be a reference to a method annotated with {@link Bulkhead} which accepts a
      * {@code Barrier} and calls {@link Barrier#await()}.
-     * 
+     *
      * @param maxRunning
      *            expected number of tasks permitted to run
      * @param bulkheadMethod

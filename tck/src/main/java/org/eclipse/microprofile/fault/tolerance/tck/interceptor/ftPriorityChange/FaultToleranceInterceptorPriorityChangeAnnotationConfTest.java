@@ -29,7 +29,6 @@ import org.eclipse.microprofile.fault.tolerance.tck.interceptor.OrderQueueProduc
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -40,7 +39,7 @@ import jakarta.inject.Inject;
 
 /**
  * A Client to demonstrate the interceptors ordering behavior of FT and CDI annotations
- * 
+ *
  * @author carlosdlr
  */
 public class FaultToleranceInterceptorPriorityChangeAnnotationConfTest extends Arquillian {
@@ -59,7 +58,7 @@ public class FaultToleranceInterceptorPriorityChangeAnnotationConfTest extends A
                         OrderQueueProducer.class)
                 .addAsManifestResource(new StringAsset("mp.fault.tolerance.interceptor.priority=3850"),
                         "microprofile-config.properties")
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .as(JavaArchive.class);
 
         return ShrinkWrap.create(WebArchive.class, "interceptorChangeFtAnnotation.war")
@@ -70,7 +69,7 @@ public class FaultToleranceInterceptorPriorityChangeAnnotationConfTest extends A
      * This test validates the interceptors execution order after call a method annotated with Asynchronous FT
      * annotation, using a queue type FIFO (first-in-first-out). The head of the queue is that element that has been on
      * the queue the longest time. In this case is validating that the early interceptor is executed at first.
-     * 
+     *
      * @throws InterruptedException
      *             if the current thread was interrupted while waiting
      * @throws ExecutionException

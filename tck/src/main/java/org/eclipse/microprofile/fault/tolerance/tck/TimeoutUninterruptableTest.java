@@ -47,7 +47,6 @@ import org.eclipse.microprofile.faulttolerance.exceptions.TimeoutException;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.AfterMethod;
@@ -78,7 +77,7 @@ public class TimeoutUninterruptableTest extends Arquillian {
         JavaArchive testJar = ShrinkWrap.create(JavaArchive.class, "ftTimeoutUninterruptable.jar")
                 .addClass(UninterruptableTimeoutClient.class)
                 .addPackage(Packages.UTILS)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .addAsManifestResource(timeoutConfig, "microprofile-config.properties");
 
         WebArchive testWar = ShrinkWrap.create(WebArchive.class, "ftTimeoutUninterruptable.war")
@@ -207,7 +206,7 @@ public class TimeoutUninterruptableTest extends Arquillian {
 
     /**
      * Test that the timeout timer is started when the execution is added to the queue
-     * 
+     *
      * @throws InterruptedException
      *             if the test is interrupted
      * @throws ExecutionException
@@ -261,7 +260,7 @@ public class TimeoutUninterruptableTest extends Arquillian {
 
     /**
      * Test that the fallback is run as soon as the timeout occurs
-     * 
+     *
      * @throws InterruptedException
      *             if the test is interrupted
      */
@@ -290,7 +289,7 @@ public class TimeoutUninterruptableTest extends Arquillian {
 
     /**
      * Creates a waiting future and adds it to a list to be cleaned up at the end of the test
-     * 
+     *
      * @return the waiting future
      */
     private CompletableFuture<Void> newWaitingFuture() {

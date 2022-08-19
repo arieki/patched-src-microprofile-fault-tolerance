@@ -34,7 +34,6 @@ import org.eclipse.microprofile.faulttolerance.Retry;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -65,7 +64,7 @@ public class RetryConfigTest extends Arquillian {
                 .addClasses(RetryConfigBean.class)
                 .addClasses(TestConfigExceptionA.class, TestConfigExceptionB.class, TestConfigExceptionB1.class)
                 .addPackage(Packages.UTILS)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .addAsManifestResource(config, "microprofile-config.properties");
 
         WebArchive war = ShrinkWrap.create(WebArchive.class, "ftRetryConfig.war")

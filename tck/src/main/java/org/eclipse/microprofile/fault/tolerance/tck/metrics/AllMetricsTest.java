@@ -55,7 +55,6 @@ import org.eclipse.microprofile.metrics.annotation.RegistryType;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.testng.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.testng.annotations.Test;
@@ -78,7 +77,7 @@ public class AllMetricsTest extends Arquillian {
                 .addClasses(AllMetricsBean.class)
                 .addPackage(Packages.UTILS)
                 .addPackage(Packages.METRIC_UTILS)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsManifestResource("beans.xml", "beans.xml")
                 .addAsManifestResource(allMetricsBeanConfig, "microprofile-config.properties");
 
         WebArchive war = ShrinkWrap.create(WebArchive.class, "ftMetricAll.war")
@@ -175,7 +174,7 @@ public class AllMetricsTest extends Arquillian {
 
     /**
      * Gets metric unit from metadata via reflection which works for Metrics 2.x and 3.x
-     * 
+     *
      * @param metadata
      *            the metadata
      * @return the unit or {@code MetricUnits.NONE} if the metadata has no unit
